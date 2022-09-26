@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "convolutional",
+        "dataloaders",
+        "FFNN",
+        "maxpool",
+        "optim",
+        "relu"
+    ],
+    "notebook.output.textLineLimit": 32
+}
