@@ -7,5 +7,5 @@
         "optim",
         "relu"
     ],
-    "notebook.output.textLineLimit": 32
+    "notebook.output.textLineLimit": 200
 }
