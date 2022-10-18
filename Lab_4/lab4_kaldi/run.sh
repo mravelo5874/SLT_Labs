@@ -38,9 +38,12 @@ if [ $stage -le 2 ]; then
   echo "[stage 2]"
   mfccdir=mfcc
   # extract MFCCs for train and test data
+  # train data:
   steps/make_mfcc.sh data/train_clean_5 exp/make_mfcc $mfccdir
   steps/compute_cmvn_stats.sh data/train_clean_5
-  
+  # test data:
+  steps/make_mfcc.sh data/dev_clean_2 exp/make_mfcc $mfccdir
+  steps/compute_cmvn_stats.sh data/dev_clean_2
 fi
 
 # train a monophone system
