@@ -7,7 +7,7 @@ lm_url=www.openslr.org/resources/11
 . ./cmd.sh
 . ./path.sh
 
-stage=2
+stage=3
 . utils/parse_options.sh
 
 set -euo pipefail
@@ -37,7 +37,7 @@ fi
 if [ $stage -le 2 ]; then
   echo "stage 2"
   mfccdir=mfcc
-  # TODO: extract MFCCs for train and test data
+  # extract MFCCs for train and test data
   steps/make_mfcc.sh data/train_clean_5 exp/make_mfcc $mfccdir
   steps/compute_cmvn_stats.sh data/train_clean_5
   
@@ -47,7 +47,8 @@ fi
 if [ $stage -le 3 ]; then
   echo "stage 3"
   utils/subset_data_dir.sh --shortest data/train_clean_5 500 data/train_500short
-  # TODO: train a monophone acoustic model
+  # train a monophone acoustic model
+  steps/train_mono.sh data/train_500short data/lang_nosp exp/mono -boost-silence 1.25
 fi
 
 # train a delta + delta-delta triphone system on all utterances
