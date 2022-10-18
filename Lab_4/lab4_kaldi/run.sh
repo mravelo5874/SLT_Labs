@@ -57,7 +57,7 @@ if [ $stage -le 4 ]; then
   # 1) force-align the entire training set with the monophone model
   steps/align_si.sh --boost-silence 1.25 data/train_clean_5 data/lang_nosp exp/mono exp/mono_ali_train_clean_5
   # 2) train the triphone model on the entire training set
-  steps/train_deltas.sh 2000 100000 data/train_clean_5 data/lang_nosp exp/mono_ali_train_clean_5 exp/tri1
+  steps/train_deltas.sh 2000 10000 data/train_clean_5 data/lang_nosp exp/mono_ali_train_clean_5 exp/tri1
 fi
 
 if [ $stage -le 5 ]; then
