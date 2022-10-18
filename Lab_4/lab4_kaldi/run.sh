@@ -13,10 +13,12 @@ stage=0
 set -euo pipefail
 
 if [ $stage -le 0 ]; then
+  echo "stage 0"
   local/download_lm.sh $lm_url $data data/local/lm
 fi
 
 if [ $stage -le 1 ]; then
+  echo "stage 1"
   # format the data as Kaldi data directories
   for part in dev-clean-2 train-clean-5; do
     # use underscore-separated names in data directories.
@@ -33,24 +35,28 @@ if [ $stage -le 1 ]; then
 fi
 
 if [ $stage -le 2 ]; then
+  echo "stage 2"
   mfccdir=mfcc
   # TODO: extract MFCCs for train and test data
 fi
 
 # train a monophone system
 if [ $stage -le 3 ]; then
+  echo "stage 3"
   utils/subset_data_dir.sh --shortest data/train_clean_5 500 data/train_500short
   # TODO: train a monophone acoustic model
 fi
 
 # train a delta + delta-delta triphone system on all utterances
 if [ $stage -le 4 ]; then
-    # TODO: 1) force-align the entire training set with the monophone model
-    # TODO: 2) train the triphone model on the entire training set
+  echo "stage 4"
+  # TODO: 1) force-align the entire training set with the monophone model
+  # TODO: 2) train the triphone model on the entire training set
 fi
 
 if [ $stage -le 5 ]; then
-    # TODO: 1) build the decoding graph
-    # TODO: 2) decode using the triphone model
-    # TODO: 3) rescore with the larger (tgmed) language model
+  echo "stage 5"
+  # TODO: 1) build the decoding graph
+  # TODO: 2) decode using the triphone model
+  # TODO: 3) rescore with the larger (tgmed) language model
 fi
