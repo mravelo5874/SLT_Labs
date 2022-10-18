@@ -1,0 +1,1 @@
+/lusr/opt/kaldi/kaldi-master/egs/mini_librispeech/s5/corpus/librispeech-vocab.txt
