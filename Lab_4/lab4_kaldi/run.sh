@@ -7,7 +7,7 @@ lm_url=www.openslr.org/resources/11
 . ./cmd.sh
 . ./path.sh
 
-stage=0
+stage=2
 . utils/parse_options.sh
 
 set -euo pipefail
@@ -37,6 +37,9 @@ fi
 if [ $stage -le 2 ]; then
   echo "stage 2"
   mfccdir=mfcc
+
+  mfccdir = steps/make_mfcc.sh --data-dir data/train_clean_5 --log-dir exp/make_mfcc
+  stemp/compute_cmvn_stats.sh
   # TODO: extract MFCCs for train and test data
 fi
 
