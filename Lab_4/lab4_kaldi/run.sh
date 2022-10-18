@@ -7,7 +7,7 @@ lm_url=www.openslr.org/resources/11
 . ./cmd.sh
 . ./path.sh
 
-stage=3
+stage=5
 . utils/parse_options.sh
 
 set -euo pipefail
@@ -62,7 +62,10 @@ fi
 
 if [ $stage -le 5 ]; then
   echo "[stage 5]"
-  # TODO: 1) build the decoding graph
-  # TODO: 2) decode using the triphone model
-  # TODO: 3) rescore with the larger (tgmed) language model
+  # 1) build the decoding graph
+  utils/mkgraph.sh data/lang_nosp_test_tgsmall exp/tri1 exp/tri1/graph_tgsmall
+  # 2) decode using the triphone model
+  steps/decode.sh exp/tri1/graph_tgsmall data/dev_clean_2 exp/tri1/decode_tgsmall_dev_clean_2
+  # 3) rescore with the larger (tgmed) language model
+  steps/lmrescore.sh data/lang_nosp_test_tgsmall data/lang_nosp_test_tgmed exp/tri1/decode_tgsmall_dev_clean_2 exp/tri1/decode_tgmed_dev_clean_2
 fi
