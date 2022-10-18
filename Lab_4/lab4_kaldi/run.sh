@@ -38,7 +38,7 @@ if [ $stage -le 2 ]; then
   echo "stage 2"
   mfccdir=mfcc
 
-  mfccdir = steps/make_mfcc.sh --data-dir data/train_clean_5 --log-dir exp/make_mfcc
+  steps/make_mfcc.sh --data-dir data/train_clean_5 --log-dir exp/make_mfcc
   stemp/compute_cmvn_stats.sh
   # TODO: extract MFCCs for train and test data
 fi
