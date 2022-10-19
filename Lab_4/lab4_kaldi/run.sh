@@ -84,10 +84,10 @@ if [ $stage -le 5 ]; then
     data/dev_clean_2 \
     exp/tri1/decode_tgsmall_dev_clean_2
   # 3) rescore with the larger (tgmed) language model
-  steps/lmrescore.sh \
-    data/lang_nosp_test_tgsmall \
-    data/lang_nosp_test_tgmed \
-    data/dev_clean_2 \
-    exp/tri1/decode_tgsmall_dev_clean_2 \
-    exp/tri1/decode_tgmed_dev_clean_2
+  # steps/lmrescore.sh \
+  #   data/lang_nosp_test_tgsmall \
+  #   data/lang_nosp_test_tgmed \
+  #   data/dev_clean_2 \
+  #   exp/tri1/decode_tgsmall_dev_clean_2 \
+  #   exp/tri1/decode_tgmed_dev_clean_2
 fi
