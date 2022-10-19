@@ -58,17 +58,36 @@ fi
 if [ $stage -le 4 ]; then
   echo "[stage 4]"
   # 1) force-align the entire training set with the monophone model
-  steps/align_si.sh --boost-silence 1.25 data/train_clean_5 data/lang_nosp exp/mono exp/mono_ali_train_clean_5
+  steps/align_si.sh --boost-silence 1.25 \
+    data/train_clean_5 \
+    data/lang_nosp \
+    exp/mono \
+    exp/mono_ali_train_clean_5
   # 2) train the triphone model on the entire training set
-  steps/train_deltas.sh 2000 10000 data/train_clean_5 data/lang_nosp exp/mono_ali_train_clean_5 exp/tri1
+  steps/train_deltas.sh 2000 10000 \
+    data/train_clean_5 \
+    data/lang_nosp \
+    exp/mono_ali_train_clean_5 \
+    exp/tri1
 fi
 
 if [ $stage -le 5 ]; then
   echo "[stage 5]"
   # 1) build the decoding graph
-  utils/mkgraph.sh data/lang_nosp_test_tgsmall exp/tri1 exp/tri1/graph_tgsmall
+  utils/mkgraph.sh \
+    data/lang_nosp_test_tgsmall \
+    exp/tri1 \
+    exp/tri1/graph_tgsmall
   # 2) decode using the triphone model
-  steps/decode.sh exp/tri1/graph_tgsmall data/dev_clean_2 exp/tri1/decode_tgsmall_dev_clean_2
+  steps/decode.sh \
+    exp/tri1/graph_tgsmall \
+    data/dev_clean_2 \
+    exp/tri1/decode_tgsmall_dev_clean_2
   # 3) rescore with the larger (tgmed) language model
-  steps/lmrescore.sh data/lang_nosp_test_tgsmall data/lang_nosp_test_tgmed exp/tri1/decode_tgsmall_dev_clean_2 exp/tri1/decode_tgmed_dev_clean_2
+  steps/lmrescore.sh \
+    data/lang_nosp_test_tgsmall \
+    data/lang_nosp_test_tgmed \
+    data/dev_clean_2 \
+    exp/tri1/decode_tgsmall_dev_clean_2 \
+    exp/tri1/decode_tgmed_dev_clean_2
 fi
