@@ -84,14 +84,14 @@ if [ $stage -le 5 ]; then
     data/dev_clean_2 \
     exp/tri1/decode_tgsmall_dev_clean_2
   # print WER
-  grep exp/tri/decode_tgsmall_dev_clean_2/wer* | utils/best_wer.sh
+  # grep exp/tri/decode_tgsmall_dev_clean_2/wer* | utils/best_wer.sh
   # 3) rescore with the larger (tgmed) language model
-  steps/lmrescore.sh \
-    data/lang_nosp_test_tgsmall \
-    data/lang_nosp_test_tgmed \
-    data/dev_clean_2 \
-    exp/tri1/decode_tgsmall_dev_clean_2 \
-    exp/tri1/decode_tgmed_dev_clean_2
-  # print WER
-  grep exp/tri/decode_tgmed_dev_clean_2/wer* | utils/best_wer.sh
+  # steps/lmrescore.sh \
+  #   data/lang_nosp_test_tgsmall \
+  #   data/lang_nosp_test_tgmed \
+  #   data/dev_clean_2 \
+  #   exp/tri1/decode_tgsmall_dev_clean_2 \
+  #   exp/tri1/decode_tgmed_dev_clean_2
+  # # print WER
+  # grep exp/tri/decode_tgmed_dev_clean_2/wer* | utils/best_wer.sh
 fi
