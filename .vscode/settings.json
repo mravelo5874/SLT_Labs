@@ -1,6 +1,7 @@
 {
     "notebook.output.textLineLimit": 1000,
     "cSpell.words": [
+        "arys",
         "audiosegment",
         "fmin",
         "imshow",
@@ -8,6 +9,7 @@
         "logspec",
         "mels",
         "melspec",
+        "mido",
         "pydub",
         "scipy",
         "stft",
